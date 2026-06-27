@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RealEstateSmart — Gestione immobiliare per iPhone</title>
+  <meta name="description" content="RealEstateSmart è lo strumento professionale per agenti immobiliari su iPhone: portafoglio, contatti, appuntamenti, mandati e statistiche, tutto in locale e privato." />
+  <meta property="og:title" content="RealEstateSmart" />
+  <meta property="og:description" content="Lo strumento professionale per agenti immobiliari su iPhone." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --fg: #111418;
+      --muted: #5f6873;
+      --brand: #0a6cf4;
+      --card: #f3f5f9;
+      --border: #e3e7ee;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --fg: #e6edf3;
+        --muted: #8b949e;
+        --brand: #58a6ff;
+        --card: #161b22;
+        --border: #30363d;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 96px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .logo {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 24px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #0a6cf4, #00b890);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      box-shadow: 0 12px 32px rgba(10, 108, 244, 0.25);
+    }
+    h1 {
+      font-size: 36px;
+      letter-spacing: -0.5px;
+      margin: 0 0 8px;
+    }
+    .tagline {
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0;
+    }
+    .cards {
+      display: grid;
+      gap: 16px;
+      margin: 48px 0 32px;
+    }
+    a.card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      color: var(--fg);
+      text-decoration: none;
+      transition: transform .12s ease, border-color .12s ease;
+    }
+    a.card:hover {
+      transform: translateY(-2px);
+      border-color: var(--brand);
+    }
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .features {
+      margin: 0 0 32px;
+      padding: 0;
+      list-style: none;
+    }
+    .features li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .features li:last-child { border-bottom: none; }
+    .features li::before {
+      content: "✓";
+      color: var(--brand);
+      font-weight: 700;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 64px;
+    }
+    .lang-section { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="logo" aria-hidden="true">R</div>
+      <h1>RealEstateSmart</h1>
+      <p class="tagline">Gestione immobiliare professionale per iPhone</p>
+    </header>
+
+    <section>
+      <h2 style="font-size:22px; margin:0 0 16px;">Cosa fa</h2>
+      <ul class="features">
+        <li>Portafoglio immobili con foto, documenti e GPS</li>
+        <li>Contatti clienti con preferenze di ricerca e match automatico</li>
+        <li>Calendario appuntamenti sincronizzato con il Calendario iOS</li>
+        <li>Mandati con scadenze e promemoria automatici</li>
+        <li>Strumenti: calcolatore mutuo, commissioni, IMU, rendita lorda</li>
+        <li>Dashboard con statistiche commerciali</li>
+        <li>Backup cifrato in locale e su iCloud</li>
+        <li>Tutti i dati restano sul tuo dispositivo</li>
+      </ul>
+    </section>
+
+    <div class="cards">
+      <a class="card" href="privacy.html">
+        <h2>Informativa sulla privacy</h2>
+        <p>Come trattiamo i dati: tutto rimane sul tuo dispositivo, nessuna telemetria.</p>
+      </a>
+      <a class="card" href="support.html">
+        <h2>Supporto</h2>
+        <p>Contatti, FAQ e come gestire l'abbonamento.</p>
+      </a>
+    </div>
+
+    <div class="lang-section">
+      <h2 style="font-size:22px;">In English</h2>
+      <p style="color: var(--muted);">
+        RealEstateSmart is a professional iOS tool for real estate agents — listings, contacts, appointments, mandates and stats, all stored on your device.
+      </p>
+      <div class="cards">
+        <a class="card" href="privacy.html#en">
+          <h2>Privacy Policy</h2>
+          <p>How we handle your data: stays on your device, no telemetry.</p>
+        </a>
+        <a class="card" href="support.html#en">
+          <h2>Support</h2>
+          <p>Contact, FAQ and how to manage your subscription.</p>
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      © 2026 RealEstateSmart · <a href="mailto:angelosassopp93@gmail.com" style="color: var(--brand);">angelosassopp93@gmail.com</a>
+    </footer>
+  </main>
+</body>
+</html>

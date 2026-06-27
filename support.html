@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Supporto — RealEstateSmart</title>
+  <meta name="description" content="Supporto, FAQ e contatti per RealEstateSmart, l'app professionale per agenti immobiliari su iPhone." />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --fg: #111418;
+      --muted: #5f6873;
+      --brand: #0a6cf4;
+      --border: #e3e7ee;
+      --card: #f3f5f9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1117;
+        --fg: #e6edf3;
+        --muted: #8b949e;
+        --brand: #58a6ff;
+        --border: #30363d;
+        --card: #161b22;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 24px 96px;
+    }
+    .top-nav { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+    .top-nav a { color: var(--brand); text-decoration: none; }
+    .top-nav a:hover { text-decoration: underline; }
+    h1 { font-size: 32px; letter-spacing: -0.4px; margin: 0 0 8px; }
+    h2 { font-size: 22px; margin: 48px 0 12px; }
+    h3 { font-size: 17px; margin: 24px 0 6px; }
+    p { margin: 0 0 14px; }
+    a { color: var(--brand); }
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 24px 0 32px;
+    }
+    .contact-card p { margin: 0; }
+    .contact-card .label { color: var(--muted); font-size: 14px; margin-bottom: 4px; }
+    .contact-card .email { font-size: 18px; font-weight: 500; }
+    details {
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    details summary {
+      cursor: pointer;
+      font-weight: 500;
+      list-style: none;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before {
+      content: "›";
+      display: inline-block;
+      width: 20px;
+      transition: transform .15s ease;
+      color: var(--brand);
+      font-weight: 700;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    details > div { padding: 8px 0 4px 20px; color: var(--muted); }
+    .lang-toggle {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--card);
+      padding: 4px;
+      border-radius: 10px;
+      margin: 16px 0 32px;
+    }
+    .lang-toggle a {
+      padding: 6px 14px;
+      border-radius: 7px;
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .lang-toggle a.active { background: var(--brand); color: white; }
+    section.lang { border-top: 2px solid var(--border); margin-top: 64px; padding-top: 32px; }
+    .footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="top-nav"><a href="index.html">&larr; RealEstateSmart</a></p>
+
+    <h1>Supporto</h1>
+    <p style="color: var(--muted); margin-bottom: 24px;">Risposte rapide alle domande più comuni. Se non trovi quello che cerchi, scrivici.</p>
+
+    <div class="lang-toggle">
+      <a href="#it" class="active">Italiano</a>
+      <a href="#en">English</a>
+    </div>
+
+    <section id="it">
+      <div class="contact-card">
+        <p class="label">Email di supporto</p>
+        <p class="email"><a href="mailto:support@realestatesmart.it">support@realestatesmart.it</a></p>
+      </div>
+
+      <h2>Domande frequenti</h2>
+
+      <details>
+        <summary>Come attivo l'abbonamento Pro?</summary>
+        <div>Apri l'app, accetta l'informativa sulla privacy, poi nel paywall scegli "Pro Mensile" o "Pro Annuale" e conferma con Face ID/Touch ID. Il primo abbonamento Mensile include 7 giorni di prova gratuita.</div>
+      </details>
+
+      <details>
+        <summary>Come annullo l'abbonamento?</summary>
+        <div>L'abbonamento è gestito da Apple. Vai in <b>Impostazioni iOS → il tuo nome → Abbonamenti → RealEstateSmart Pro → Annulla abbonamento</b>. La cancellazione è effettiva alla fine del periodo già pagato.</div>
+      </details>
+
+      <details>
+        <summary>Come ripristino un abbonamento già attivo su un nuovo iPhone?</summary>
+        <div>Accedi al nuovo dispositivo con lo stesso Apple ID usato per l'acquisto originale, apri l'app, vai in <b>Impostazioni → Abbonamento</b> e tocca <b>"Ripristina acquisti"</b>. L'abbonamento si riattiva senza nuovi addebiti.</div>
+      </details>
+
+      <details>
+        <summary>I miei dati sono al sicuro?</summary>
+        <div>Sì. Tutti i dati restano sul tuo iPhone, in una directory cifrata da iOS Data Protection. Nessun dato viene inviato a server di terze parti. Solo il nome dell'agenzia viene replicato sui tuoi altri dispositivi via iCloud, secondo le policy Apple.</div>
+      </details>
+
+      <details>
+        <summary>Posso esportare i miei dati?</summary>
+        <div>Sì, in qualsiasi momento. Da <b>Impostazioni → Backup e ripristino</b> puoi creare un file <code>.resmart</code> (formato JSON cifrato) e condividerlo via Share Sheet, salvarlo in Files, su iCloud Drive o inviarlo via email. Puoi reimportarlo su un altro iPhone con la stessa app.</div>
+      </details>
+
+      <details>
+        <summary>Posso usare l'app su iPad?</summary>
+        <div>L'app è ottimizzata per iPhone. Su iPad funziona in modalità compatibilità.</div>
+      </details>
+
+      <details>
+        <summary>Quali permessi richiede l'app?</summary>
+        <div>Tutti opzionali e revocabili da Impostazioni iOS:<br>· Face ID/Touch ID per il blocco app<br>· Calendario (scrittura) per gli appuntamenti<br>· Libreria foto per le immagini degli immobili<br>· Notifiche per i promemoria di mandati e appuntamenti</div>
+      </details>
+
+      <details>
+        <summary>Come segnalare un bug o richiedere una funzionalità?</summary>
+        <div>Scrivi a <a href="mailto:angelosassopp93@gmail.com">angelosassopp93@gmail.com</a> indicando: versione iOS, modello iPhone, descrizione del problema o della richiesta. Rispondiamo entro 2 giorni lavorativi.</div>
+      </details>
+
+      <details>
+        <summary>Quanto costa l'abbonamento?</summary>
+        <div>Pro Mensile €6,99/mese (con 7 giorni di prova gratuita per i nuovi abbonati). Pro Annuale €69,99/anno (~17% di risparmio rispetto al mensile). I prezzi sono visualizzati nella valuta locale del tuo account App Store al momento dell'acquisto.</div>
+      </details>
+
+      <details>
+        <summary>Posso ottenere un rimborso?</summary>
+        <div>I rimborsi degli abbonamenti sono gestiti da Apple. Vai su <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>, accedi col tuo Apple ID, trova la transazione e segui la procedura. Apple decide autonomamente l'esito.</div>
+      </details>
+    </section>
+
+    <section id="en" class="lang">
+      <h1>Support (English)</h1>
+
+      <div class="contact-card">
+        <p class="label">Support email</p>
+        <p class="email"><a href="mailto:angelosassopp93@gmail.com">angelosassopp93@gmail.com</a></p>
+      </div>
+
+      <h2>Frequently asked questions</h2>
+
+      <details>
+        <summary>How do I activate the Pro subscription?</summary>
+        <div>Open the app, accept the privacy policy, then in the paywall pick "Pro Monthly" or "Pro Annual" and confirm with Face ID/Touch ID. The first Monthly subscription includes a 7-day free trial.</div>
+      </details>
+
+      <details>
+        <summary>How do I cancel my subscription?</summary>
+        <div>The subscription is managed by Apple. Go to <b>iOS Settings → your name → Subscriptions → RealEstateSmart Pro → Cancel Subscription</b>. Cancellation takes effect at the end of the current paid period.</div>
+      </details>
+
+      <details>
+        <summary>How do I restore an active subscription on a new iPhone?</summary>
+        <div>Sign into the new device with the same Apple ID used for the original purchase, open the app, go to <b>Settings → Subscription</b> and tap <b>"Restore Purchases"</b>. The subscription reactivates with no extra charge.</div>
+      </details>
+
+      <details>
+        <summary>Is my data safe?</summary>
+        <div>Yes. All data stays on your iPhone in a directory encrypted by iOS Data Protection. No data is sent to any third-party server. Only the agency name is mirrored across your devices via iCloud, under Apple's policy.</div>
+      </details>
+
+      <details>
+        <summary>Can I export my data?</summary>
+        <div>Yes, at any time. From <b>Settings → Backup &amp; Restore</b> you can create a <code>.resmart</code> file (encrypted JSON) and share it via Share Sheet, save it in Files, on iCloud Drive or send via email. You can re-import it on another iPhone running the same app.</div>
+      </details>
+
+      <details>
+        <summary>Can I use the app on iPad?</summary>
+        <div>The app is optimised for iPhone. It runs in compatibility mode on iPad.</div>
+      </details>
+
+      <details>
+        <summary>What permissions does the app request?</summary>
+        <div>All optional and revocable from iOS Settings:<br>· Face ID/Touch ID for App Lock<br>· Calendar (write) for appointments<br>· Photo Library for property images<br>· Notifications for mandate and appointment reminders</div>
+      </details>
+
+      <details>
+        <summary>How do I report a bug or request a feature?</summary>
+        <div>Write to <a href="mailto:angelosassopp93@gmail.com">angelosassopp93@gmail.com</a> including: iOS version, iPhone model, description of the issue or request. We reply within 2 business days.</div>
+      </details>
+
+      <details>
+        <summary>How much does the subscription cost?</summary>
+        <div>Pro Monthly €6.99/month (with 7-day free trial for new subscribers). Pro Annual €69.99/year (~17% saving compared to monthly). Prices are shown in the local currency of your App Store account at purchase time.</div>
+      </details>
+
+      <details>
+        <summary>Can I get a refund?</summary>
+        <div>Refunds for subscriptions are handled by Apple. Go to <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>, sign in with your Apple ID, find the transaction and follow the procedure. Apple decides the outcome.</div>
+      </details>
+    </section>
+
+    <div class="footer">
+      © 2026 RealEstateSmart · <a href="index.html">Home</a> · <a href="privacy.html">Privacy</a>
+    </div>
+  </main>
+</body>
+</html>
