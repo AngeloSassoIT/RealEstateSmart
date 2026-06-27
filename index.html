@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RealEstateSmart — L'app degli agenti immobiliari italiani</title>
+  <meta name="description" content="Portafoglio immobili, clienti, appuntamenti, mandati e statistiche. Tutto in un'app pensata per gli agenti immobiliari italiani. 30 giorni gratis." />
+  <meta name="theme-color" content="#0a6cf4" />
+  <meta property="og:title" content="RealEstateSmart — L'app degli agenti immobiliari italiani" />
+  <meta property="og:description" content="Portafoglio, clienti, appuntamenti, mandati, statistiche. Tutto in un'app sul tuo iPhone. 30 giorni gratis." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --bg-elevated: #f7f9fc;
+      --fg: #0a0f1c;
+      --fg-soft: #3a4452;
+      --muted: #6b7484;
+      --brand: #0a6cf4;
+      --brand-dark: #0855c4;
+      --accent: #00b890;
+      --card: #ffffff;
+      --border: #e4e8ef;
+      --shadow-sm: 0 1px 3px rgba(10, 15, 28, 0.05);
+      --shadow-md: 0 8px 24px rgba(10, 15, 28, 0.08);
+      --shadow-lg: 0 24px 64px rgba(10, 15, 28, 0.12);
+      --shadow-brand: 0 16px 48px rgba(10, 108, 244, 0.25);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #07090f;
+        --bg-elevated: #0d1117;
+        --fg: #f0f4fa;
+        --fg-soft: #c2cad6;
+        --muted: #8b94a4;
+        --brand: #4d94ff;
+        --brand-dark: #3a7dd9;
+        --accent: #34d4a8;
+        --card: #11161f;
+        --border: #1f2733;
+        --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.5);
+        --shadow-brand: 0 16px 48px rgba(77, 148, 255, 0.25);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* ──────── NAV ──────── */
+    nav.top {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: color-mix(in oklab, var(--bg) 85%, transparent);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav.top .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.2px;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 17px;
+      box-shadow: 0 4px 12px rgba(10, 108, 244, 0.3);
+    }
+    nav.top .links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 15px;
+      color: var(--fg-soft);
+    }
+    nav.top .links a:hover { color: var(--brand); }
+    nav.top .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand);
+      color: white !important;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    nav.top .cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(10, 108, 244, 0.35);
+    }
+    @media (max-width: 720px) {
+      nav.top .links a:not(.cta) { display: none; }
+    }
+
+    /* ──────── HERO ──────── */
+    .hero {
+      position: relative;
+      padding: 80px 0 96px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1200px;
+      height: 800px;
+      background: radial-gradient(ellipse at center, rgba(10, 108, 244, 0.15) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 880px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero { padding: 48px 0 64px; }
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: color-mix(in oklab, var(--brand) 12%, transparent);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      letter-spacing: 0.1px;
+    }
+    .hero-eyebrow .pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--brand);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 var(--brand);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(10, 108, 244, 0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(10, 108, 244, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(10, 108, 244, 0); }
+    }
+    h1.hero-title {
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    h1.hero-title span.accent {
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: clamp(17px, 2.4vw, 19px);
+      color: var(--fg-soft);
+      margin-bottom: 32px;
+      max-width: 540px;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .app-store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #000;
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-weight: 500;
+      transition: transform .15s ease, box-shadow .15s ease;
+      box-shadow: var(--shadow-md);
+    }
+    .app-store-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .app-store-badge svg { width: 28px; height: 28px; flex-shrink: 0; }
+    .app-store-badge .label-row {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .app-store-badge .label-row .small { font-size: 11px; opacity: 0.85; }
+    .app-store-badge .label-row .big { font-size: 17px; letter-spacing: 0.3px; }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--fg);
+      font-weight: 600;
+      font-size: 15px;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+    .btn-secondary:hover { border-color: var(--brand); transform: translateY(-2px); }
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .hero-trust span { display: inline-flex; align-items: center; gap: 6px; }
+    .hero-trust .dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
+
+    /* ──────── iPhone mockup ──────── */
+    .device-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      perspective: 1500px;
+    }
+    .phone {
+      position: relative;
+      width: 290px;
+      aspect-ratio: 9 / 19.5;
+      background: linear-gradient(135deg, #1a1f2b, #0a0d14);
+      border-radius: 44px;
+      padding: 12px;
+      box-shadow:
+        0 50px 100px rgba(10, 15, 28, 0.35),
+        0 20px 40px rgba(10, 15, 28, 0.2),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.05);
+      transform: rotate(-2deg);
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #fafbfd, #eef2f8);
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (prefers-color-scheme: dark) {
+      .phone-screen { background: linear-gradient(180deg, #161b22, #0d1117); }
+    }
+    .phone-notch {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 28px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 10;
+    }
+    .phone-status {
+      padding: 18px 28px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: #0a0f1c;
+    }
+    @media (prefers-color-scheme: dark) { .phone-status { color: #fff; } }
+    .phone-status .icons { display: flex; gap: 4px; align-items: center; }
+    .phone-status .battery {
+      width: 22px; height: 11px;
+      border: 1.5px solid currentColor;
+      border-radius: 3px;
+      position: relative;
+      padding: 1px;
+    }
+    .phone-status .battery::before {
+      content: ""; display: block;
+      width: 100%; height: 100%;
+      background: currentColor;
+      border-radius: 1px;
+    }
+    .phone-content {
+      flex: 1;
+      padding: 16px 18px 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .pp-hero-icon {
+      width: 52px; height: 52px;
+      background: color-mix(in oklab, var(--brand) 15%, transparent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto;
+    }
+    .pp-title {
+      font-size: 16px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.3px;
+      color: #0a0f1c;
+    }
+    @media (prefers-color-scheme: dark) { .pp-title { color: #fff; } }
+    .pp-benefits {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 10px;
+      color: #3a4452;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    @media (prefers-color-scheme: dark) {
+      .pp-benefits { background: rgba(255, 255, 255, 0.05); color: #c2cad6; }
+    }
+    .pp-benefits .row { display: flex; align-items: center; gap: 8px; }
+    .pp-benefits .ic { color: var(--brand); width: 12px; }
+    .pp-trial-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(10, 15, 28, 0.08);
+    }
+    .pp-trial-card .eyebrow {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .pp-trial-card .h {
+      font-family: -apple-system, "SF Pro Rounded", system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 5px;
+      color: #0a0f1c;
+    }
+    @media (prefers-color-scheme: dark) { .pp-trial-card .h { color: #fff; } }
+    .pp-trial-card .sub {
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .pp-trial-card .btn {
+      background: var(--brand);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 9px;
+      border-radius: 999px;
+      margin-bottom: 7px;
+    }
+    .pp-trial-card .fp { font-size: 9px; color: var(--muted); font-weight: 600; }
+    .pp-trial-card .fp-sub { font-size: 9px; color: var(--muted); margin-top: 2px; }
+
+    /* Floating cards on the side of the phone */
+    .float-card {
+      position: absolute;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      box-shadow: var(--shadow-lg);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: float 4s ease-in-out infinite;
+    }
+    .float-card .ic {
+      width: 32px; height: 32px;
+      border-radius: 9px;
+      background: color-mix(in oklab, var(--brand) 12%, transparent);
+      color: var(--brand);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .float-card .ic.green {
+      background: color-mix(in oklab, var(--accent) 14%, transparent);
+      color: var(--accent);
+    }
+    .float-card .ic.purple {
+      background: rgba(160, 90, 230, 0.15);
+      color: #a05ae6;
+    }
+    .float-card strong { display: block; font-weight: 700; color: var(--fg); font-size: 13px; }
+    .float-card span.muted { color: var(--muted); font-size: 11px; }
+    .float-1 { top: 50px; left: -10px; animation-delay: 0s; }
+    .float-2 { bottom: 100px; right: -20px; animation-delay: 1.5s; }
+    .float-3 { bottom: 280px; left: -40px; animation-delay: 3s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @media (max-width: 540px) {
+      .float-card { display: none; }
+      .phone { width: 240px; }
+    }
+
+    /* ──────── SECTION COMMON ──────── */
+    section.block {
+      padding: 96px 0;
+      position: relative;
+    }
+    section.block.tint {
+      background: var(--bg-elevated);
+    }
+    .section-eyebrow {
+      text-align: center;
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--fg-soft);
+      font-size: 17px;
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+
+    /* ──────── TRUST STRIP ──────── */
+    .trust-strip {
+      padding: 36px 0;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 36px 48px;
+      color: var(--fg-soft);
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .trust-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .trust-row svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
+
+    /* ──────── FEATURES GRID ──────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 880px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--brand);
+      box-shadow: var(--shadow-md);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: color-mix(in oklab, var(--brand) 12%, transparent);
+      color: var(--brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 24px;
+    }
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+    .feature-card p {
+      color: var(--fg-soft);
+      font-size: 15px;
+    }
+
+    /* ──────── BIG CARDS (alternating rows) ──────── */
+    .deep-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-bottom: 96px;
+    }
+    .deep-row:last-child { margin-bottom: 0; }
+    .deep-row.reverse { direction: rtl; }
+    .deep-row.reverse > * { direction: ltr; }
+    @media (max-width: 880px) {
+      .deep-row { grid-template-columns: 1fr; gap: 36px; margin-bottom: 64px; }
+      .deep-row.reverse { direction: ltr; }
+    }
+    .deep-content h3 {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .deep-content p {
+      color: var(--fg-soft);
+      font-size: 17px;
+      margin-bottom: 24px;
+    }
+    .deep-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+    .deep-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+    }
+    .deep-list .check {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: color-mix(in oklab, var(--accent) 18%, transparent);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .deep-visual {
+      aspect-ratio: 1.05 / 1;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, color-mix(in oklab, var(--brand) 8%, transparent), color-mix(in oklab, var(--accent) 8%, transparent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+      position: relative;
+      overflow: hidden;
+    }
+    .deep-visual::before {
+      content: "";
+      position: absolute;
+      inset: 30%;
+      background: radial-gradient(circle, color-mix(in oklab, var(--brand) 22%, transparent) 0%, transparent 70%);
+    }
+    .deep-visual .emoji {
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 16px 32px rgba(10, 15, 28, 0.15));
+    }
+
+    /* ──────── PRICING ──────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    @media (max-width: 720px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+    .price-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      position: relative;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card.featured {
+      border: 2px solid var(--brand);
+      box-shadow: var(--shadow-brand);
+    }
+    .price-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+    }
+    .price-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .price-card .price {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-card .price .period {
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+    .price-card .save {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .price-card .trial-note {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .price-card ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
+      font-size: 15px;
+      color: var(--fg-soft);
+    }
+    .price-card ul li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .price-card ul li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    /* ──────── FAQ ──────── */
+    .faq {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .faq details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      transition: border-color .2s ease;
+    }
+    .faq details[open] { border-color: var(--brand); }
+    .faq summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "+";
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--brand);
+      transition: transform .2s ease;
+    }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq details > div {
+      margin-top: 14px;
+      color: var(--fg-soft);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ──────── FINAL CTA ──────── */
+    .final-cta {
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      color: white;
+      padding: 80px 24px;
+      text-align: center;
+      border-radius: var(--radius-xl);
+      max-width: 1140px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before, .final-cta::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .final-cta::before { width: 300px; height: 300px; top: -80px; left: -80px; }
+    .final-cta::after { width: 220px; height: 220px; bottom: -60px; right: -40px; }
+    .final-cta > * { position: relative; z-index: 1; }
+    .final-cta h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .final-cta p {
+      font-size: 18px;
+      opacity: 0.92;
+      margin-bottom: 32px;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .final-cta .app-store-badge {
+      background: white;
+      color: #000;
+    }
+
+    /* ──────── FOOTER ──────── */
+    footer {
+      padding: 64px 0 48px;
+      border-top: 1px solid var(--border);
+      margin-top: 96px;
+    }
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 720px) {
+      .foot-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+    .foot-col h4 {
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .foot-col a, .foot-col p {
+      display: block;
+      color: var(--fg-soft);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .foot-col a:hover { color: var(--brand); }
+    .foot-meta {
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ──────── NAV ──────── -->
+  <nav class="top">
+    <div class="container row">
+      <a href="#" class="brand">
+        <span class="brand-mark">R</span>
+        <span>RealEstateSmart</span>
+      </a>
+      <div class="links">
+        <a href="#features">Funzionalità</a>
+        <a href="#pricing">Prezzi</a>
+        <a href="#faq">FAQ</a>
+        <a href="support.html">Supporto</a>
+        <a href="#download" class="cta">Scarica</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ──────── HERO ──────── -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-eyebrow"><span class="pulse"></span>Lancio in corso · Anteprima esclusiva</span>
+        <h1 class="hero-title">
+          Il tuo lavoro di agente immobiliare, <span class="accent">finalmente ordinato.</span>
+        </h1>
+        <p class="hero-sub">
+          Portafoglio immobili, contatti, appuntamenti, mandati, calcolatori e statistiche.
+          Tutto in un'app pensata per gli agenti immobiliari italiani — sul tuo iPhone, senza cloud di terze parti.
+        </p>
+        <div class="hero-ctas" id="download">
+          <a class="app-store-badge" href="#" aria-label="Scarica RealEstateSmart su App Store">
+            <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+              <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+            </svg>
+            <span class="label-row">
+              <span class="small">Disponibile su</span>
+              <span class="big">App Store</span>
+            </span>
+          </a>
+          <a class="btn-secondary" href="#features">
+            Scopri come funziona &nbsp;→
+          </a>
+        </div>
+        <div class="hero-trust">
+          <span><span class="dot"></span> 30 giorni di prova gratuita</span>
+          <span><span class="dot"></span> Nessuna carta richiesta</span>
+          <span><span class="dot"></span> Cancella in 1 tap</span>
+        </div>
+      </div>
+
+      <!-- iPhone Mockup with paywall preview -->
+      <div class="device-wrap">
+        <div class="float-card float-1">
+          <div class="ic">🏠</div>
+          <div>
+            <strong>12 immobili attivi</strong>
+            <span class="muted">+3 questa settimana</span>
+          </div>
+        </div>
+        <div class="float-card float-2">
+          <div class="ic green">✓</div>
+          <div>
+            <strong>Match trovato</strong>
+            <span class="muted">Bilocale, Roma Centro</span>
+          </div>
+        </div>
+        <div class="float-card float-3">
+          <div class="ic purple">📅</div>
+          <div>
+            <strong>Visita oggi h.16</strong>
+            <span class="muted">Sig.ra Bianchi</span>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="phone-status">
+              <span>9:41</span>
+              <div class="icons">
+                <svg width="14" height="10" viewBox="0 0 16 11" fill="currentColor"><rect x="0" y="6" width="3" height="5" rx="0.5"/><rect x="4" y="4" width="3" height="7" rx="0.5"/><rect x="8" y="2" width="3" height="9" rx="0.5"/><rect x="12" y="0" width="3" height="11" rx="0.5"/></svg>
+                <svg width="14" height="10" viewBox="0 0 16 11" fill="currentColor"><path d="M8 9.2c1 0 1.7-.8 1.7-1.7s-.7-1.7-1.7-1.7-1.7.8-1.7 1.7.7 1.7 1.7 1.7zm0-5.6c1.6 0 3 .6 4 1.7l1.4-1.4C12 2.5 10.1 1.7 8 1.7S4 2.5 2.6 3.9L4 5.3c1-1.1 2.4-1.7 4-1.7zm0-3.3c2.4 0 4.6 1 6.3 2.6L15.7 2C13.6.4 11 -.5 8 -.5S2.4.4.3 2L1.7 3.6C3.4 1.9 5.6.9 8 .9z"/></svg>
+                <div class="battery"></div>
+              </div>
+            </div>
+            <div class="phone-content">
+              <div class="pp-hero-icon">✨</div>
+              <div class="pp-title">Attiva Pro per continuare</div>
+              <div class="pp-benefits">
+                <div class="row"><span class="ic">☁️</span><span>Backup iCloud illimitati</span></div>
+                <div class="row"><span class="ic">📊</span><span>Statistiche commerciali</span></div>
+                <div class="row"><span class="ic">∞</span><span>Immobili illimitati</span></div>
+                <div class="row"><span class="ic">🛡</span><span>Dati solo sul tuo iPhone</span></div>
+              </div>
+              <div class="pp-trial-card">
+                <div class="eyebrow">PROVA GRATUITA</div>
+                <div class="h">Inizia con 30 giorni gratis</div>
+                <div class="sub">Accesso completo. Nessun addebito oggi.</div>
+                <div class="btn">Inizia la prova gratuita</div>
+                <div class="fp">Pro Mensile · poi €6,99/mese</div>
+                <div class="fp-sub">Annulla quando vuoi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ──────── TRUST STRIP ──────── -->
+  <div class="trust-strip">
+    <div class="container trust-row">
+      <span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Made in Italy per gli agenti italiani
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Conforme GDPR · Dati solo sul tuo iPhone
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Nessuna pubblicità, nessun tracker
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        Funziona offline
+      </span>
+    </div>
+  </div>
+
+  <!-- ──────── FEATURES ──────── -->
+  <section class="block" id="features">
+    <div class="container">
+      <div class="section-eyebrow">Funzionalità</div>
+      <h2 class="section-title">Tutto quello che ti serve, niente di più</h2>
+      <p class="section-sub">Sei strumenti progettati attorno al lavoro reale dell'agente, non al wishlist di un product manager.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🏢</div>
+          <h3>Portafoglio immobili</h3>
+          <p>Schede complete con foto, indirizzo GPS, documenti allegati, prezzo e stato. Tutto cercabile in tempo reale.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Contatti & match</h3>
+          <p>Salva preferenze di ricerca (zona, prezzo, vani) e ricevi proposte automatiche di abbinamento cliente-immobile.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Calendario sincronizzato</h3>
+          <p>Appuntamenti integrati con il Calendario iOS. Promemoria automatici per visite e firme di mandato.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📜</div>
+          <h3>Mandati & scadenze</h3>
+          <p>Tieni traccia di esclusivi e non esclusivi, con notifica automatica X giorni prima della scadenza.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧮</div>
+          <h3>Calcolatori inclusi</h3>
+          <p>Mutuo, commissione, IMU, rendita lorda da affitto, checklist rogito. Nessun foglio Excel da mantenere.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Dashboard commerciale</h3>
+          <p>KPI in tempo reale: immobili attivi, transazioni del mese, conversione, compleanni dei clienti. Tutto personalizzabile.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────── DEEP DIVE 1 ──────── -->
+  <section class="block tint">
+    <div class="container">
+      <div class="deep-row">
+        <div class="deep-content">
+          <div class="section-eyebrow" style="text-align:left;margin-bottom:8px">Privacy first</div>
+          <h3>I dati dei tuoi clienti non lasciano il tuo iPhone.</h3>
+          <p>Tutto è salvato in locale con la cifratura nativa di iOS. Nessun server. Nessun analytics. Nessun cookie. Quando esci dall'app, i tuoi clienti restano nel tuo telefono — non in un database in Irlanda.</p>
+          <ul class="deep-list">
+            <li><span class="check">✓</span><span>Data Protection di iOS attiva di default</span></li>
+            <li><span class="check">✓</span><span>App Lock con Face ID / Touch ID</span></li>
+            <li><span class="check">✓</span><span>Backup cifrato esportabile dove vuoi (iCloud, Files, email)</span></li>
+            <li><span class="check">✓</span><span>Conforme GDPR e Codice Privacy italiano</span></li>
+          </ul>
+        </div>
+        <div class="deep-visual">
+          <span class="emoji">🔒</span>
+        </div>
+      </div>
+
+      <div class="deep-row reverse">
+        <div class="deep-content">
+          <div class="section-eyebrow" style="text-align:left;margin-bottom:8px">Velocità reale</div>
+          <h3>Aggiungi un immobile in 30 secondi. Inseriscilo dal cantiere.</h3>
+          <p>L'app è pensata per essere usata in movimento: tra una visita e l'altra, in macchina, davanti al cliente. Niente menu nascosti, niente form da web 2008. Solo le azioni che servono, dove servono.</p>
+          <ul class="deep-list">
+            <li><span class="check">✓</span><span>Scatti foto e le associ subito all'immobile</span></li>
+            <li><span class="check">✓</span><span>Import contatti dalla rubrica iOS</span></li>
+            <li><span class="check">✓</span><span>Geolocalizzazione automatica dell'indirizzo</span></li>
+            <li><span class="check">✓</span><span>Condividi scheda immobile via WhatsApp con un tap</span></li>
+          </ul>
+        </div>
+        <div class="deep-visual">
+          <span class="emoji">⚡️</span>
+        </div>
+      </div>
+
+      <div class="deep-row">
+        <div class="deep-content">
+          <div class="section-eyebrow" style="text-align:left;margin-bottom:8px">Lavora ovunque</div>
+          <h3>Online o offline, l'app funziona uguale.</h3>
+          <p>Treno, ascensore, cantine, garage: l'app non si pianta se non hai connessione. I dati sono già sul tuo iPhone. La sincronizzazione iCloud per il nome agenzia accade solo quando il device torna online.</p>
+          <ul class="deep-list">
+            <li><span class="check">✓</span><span>Zero dipendenza da server esterni</span></li>
+            <li><span class="check">✓</span><span>Visualizzi e modifichi tutto senza rete</span></li>
+            <li><span class="check">✓</span><span>Sync silenziosa quando torni online</span></li>
+            <li><span class="check">✓</span><span>Niente abbonamenti server, niente downtime</span></li>
+          </ul>
+        </div>
+        <div class="deep-visual">
+          <span class="emoji">🌍</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────── PRICING ──────── -->
+  <section class="block" id="pricing">
+    <div class="container">
+      <div class="section-eyebrow">Prezzi semplici</div>
+      <h2 class="section-title">30 giorni gratis. Poi solo se ti serve davvero.</h2>
+      <p class="section-sub">Inizia con un mese di prova completa. Nessun limite di funzionalità. Niente carta richiesta in anticipo.</p>
+
+      <div class="pricing-grid">
+        <div class="price-card featured">
+          <div class="price-badge">30 GIORNI GRATIS</div>
+          <h3>Pro Mensile</h3>
+          <div class="price">€6,99<span class="period">/mese</span></div>
+          <div class="trial-note">Dopo il trial di 30 giorni · Annulla quando vuoi</div>
+          <ul>
+            <li>Tutte le funzionalità sbloccate</li>
+            <li>Immobili e contatti illimitati</li>
+            <li>Backup iCloud crittografati</li>
+            <li>Statistiche commerciali avanzate</li>
+            <li>Aggiornamenti continui</li>
+          </ul>
+          <a class="app-store-badge" href="#" style="width:100%;justify-content:center">
+            <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9z"/></svg>
+            <span class="label-row"><span class="small">Disponibile su</span><span class="big">App Store</span></span>
+          </a>
+        </div>
+
+        <div class="price-card">
+          <h3>Pro Annuale</h3>
+          <div class="price">€69,99<span class="period">/anno</span></div>
+          <div class="save">Risparmi 17% rispetto al mensile</div>
+          <ul>
+            <li>Stesso accesso del piano Mensile</li>
+            <li>Equivalente a €5,83/mese</li>
+            <li>Un solo pagamento all'anno</li>
+            <li>Ideale per agenti consolidati</li>
+            <li>Aggiornamenti continui</li>
+          </ul>
+          <a class="btn-secondary" href="#" style="width:100%;justify-content:center">
+            Scegli il piano annuale &nbsp;→
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────── FAQ ──────── -->
+  <section class="block tint" id="faq">
+    <div class="container">
+      <div class="section-eyebrow">Domande frequenti</div>
+      <h2 class="section-title">Quello che ti chiedi prima di provare</h2>
+      <p class="section-sub">Risposte chiare alle domande più comuni. Per il resto c'è la <a href="support.html" style="color:var(--brand);text-decoration:underline">pagina di supporto</a>.</p>
+
+      <div class="faq">
+        <details open>
+          <summary>Il trial di 30 giorni richiede la carta di credito?</summary>
+          <div>Tecnicamente serve confermare l'abbonamento con Face ID o password Apple ID al primo lancio, ma <b>nessun importo viene addebitato per i primi 30 giorni</b>. Se annulli dalle Impostazioni iOS prima della scadenza, non paghi nulla.</div>
+        </details>
+        <details>
+          <summary>I miei clienti sono al sicuro?</summary>
+          <div>Sì. Tutti i dati restano cifrati sul tuo iPhone con la protezione nativa di iOS. Nessun server, nessun analytics, nessun cookie. L'unica eccezione è il nome dell'agenzia, replicato via iCloud per essere visibile sui tuoi altri device.</div>
+        </details>
+        <details>
+          <summary>Funziona anche su iPad?</summary>
+          <div>L'app è ottimizzata per iPhone. Su iPad funziona in modalità compatibilità (interfaccia iPhone ingrandita). Una versione iPad nativa è prevista per il futuro.</div>
+        </details>
+        <details>
+          <summary>Posso esportare i miei dati?</summary>
+          <div>Sì, in qualsiasi momento. La funzione "Esporta backup" genera un file <code>.resmart</code> cifrato che puoi salvare ovunque (iCloud Drive, email, AirDrop) e re-importare su un altro iPhone.</div>
+        </details>
+        <details>
+          <summary>Cosa succede se cambio iPhone?</summary>
+          <div>Esporta il backup dal vecchio device, importalo nel nuovo. Tutti i dati (immobili, contatti, appuntamenti, mandati) tornano al loro posto in meno di un minuto. L'abbonamento si ripristina con un tap su "Ripristina acquisti" usando lo stesso Apple ID.</div>
+        </details>
+        <details>
+          <summary>L'app richiede una connessione internet?</summary>
+          <div>No. Tutto è memorizzato in locale e funziona offline al 100%. La connessione serve solo per la sincronizzazione del nome agenzia su altri tuoi device (via iCloud) e per le ricerche su mappa.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────── FINAL CTA ──────── -->
+  <section class="block">
+    <div class="container">
+      <div class="final-cta">
+        <h2>Pronto a smettere di rincorrere immobili e clienti?</h2>
+        <p>Scarica RealEstateSmart. Hai 30 giorni per provarlo senza spendere un centesimo.</p>
+        <a class="app-store-badge" href="#" aria-label="Scarica RealEstateSmart su App Store">
+          <svg viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9z"/></svg>
+          <span class="label-row">
+            <span class="small">Disponibile su</span>
+            <span class="big">App Store</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────── FOOTER ──────── -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-col">
+          <div class="brand" style="margin-bottom:14px">
+            <span class="brand-mark">R</span>
+            <span>RealEstateSmart</span>
+          </div>
+          <p style="color:var(--muted)">L'app degli agenti immobiliari italiani. Tutto sul tuo iPhone, niente cloud di terze parti.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Prodotto</h4>
+          <a href="#features">Funzionalità</a>
+          <a href="#pricing">Prezzi</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <h4>Risorse</h4>
+          <a href="support.html">Supporto</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="support.html">Contatti</a>
+        </div>
+        <div class="foot-col">
+          <h4>Legale</h4>
+          <a href="privacy.html">Informativa privacy</a>
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Termini d'uso</a>
+        </div>
+      </div>
+      <div class="foot-meta">
+        <span>© 2026 RealEstateSmart · Angelo Sasso · Tutti i diritti riservati</span>
+        <span>Made in Italy · 🇮🇹</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
